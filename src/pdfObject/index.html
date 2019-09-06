@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>pdf测试</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .pdfobject-container { 
+                height: 100vh;
+                border: 1px solid rgba(0,0,0,.1);
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <!--移动端不支持内嵌pdf-->
+        <div id="exmp"></div>
+        <script src="pdfobject.min.js"></script>
+        <script>
+            PDFObject.embed("../test.pdf", "#exmp");
+        </script>
+    </body>
+</html>

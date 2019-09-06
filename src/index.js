@@ -1,6 +1,3 @@
-
-
-
 pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs-dist/build/pdf.worker.js';
 
 // let DEFAULT_URL = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
@@ -14,15 +11,19 @@ let loadingTask = pdfjsLib.getDocument({
     cMapPacked: true,
 });
 
+let CSS_UNITS = 96 / 72;
+
+let width = document.body.clientWidth * 0.8;
+width > 1000 && (width = 1000);
+
 loadingTask.promise.then(function(pdfDoc) {
-    
+
     for(let i=0; i<pdfDoc.numPages; i++){
-        
         pdfDoc.getPage(i+1).then(function(pdfPage) {
 
             let viewport = pdfPage.getViewport({scale: 1});
-            let scale = 800 / viewport.width; 
-           
+            let scale = width / viewport.width / CSS_UNITS; 
+
             let pdfPageView = new pdfjsViewer.PDFPageView({
                 container: container,
                 scale: scale,
